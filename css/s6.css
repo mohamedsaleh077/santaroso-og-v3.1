@@ -1,0 +1,57 @@
+body {
+    font-family: Arial, sans-serif;
+    color: #ccc;
+    background-color: #1a1a1a;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-attachment: fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    width: 900px;
+    margin: 20px auto;
+    background: rgba(0, 0, 0, 0.85);
+    border: 1px solid #333;
+    padding: 20px;
+  }
+  
+  a {
+    color: #00ccff;
+    text-decoration: none;
+  }
+  a:hover {
+    color: #ff3399;
+    text-shadow: 0 0 2px #ff3399;
+  }
+  
+  .post, .post-form {
+    background: #222;
+    border-left: 3px solid #00ccff;
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+  
+  textarea, input[type="file"], input[type="text"] {
+    width: 100%;
+    background: #111;
+    color: #eee;
+    border: 1px solid #444;
+    padding: 8px;
+  }
+  
+  button, input[type="submit"] {
+    background: #00ccff;
+    color: #000;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  button:hover {
+    background: #ff3399;
+    color: #fff;
+  }
+  

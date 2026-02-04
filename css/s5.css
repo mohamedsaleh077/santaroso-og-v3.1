@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+body {
+  font-family: 'VT323', monospace;
+  font-size: 16px;
+  color: #000080;
+  background-color: #d4d0c8;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-attachment: fixed;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 750px;
+  margin: 20px auto;
+  padding: 10px;
+  background: #ffffff;
+  border: 2px solid #000080;
+  box-shadow: 2px 2px 0 #808080;
+}
+
+a {
+  color: #0000ee;
+  text-decoration: underline;
+}
+a:hover {
+  color: #551a8b;
+}
+
+.post, .post-form {
+  background: #e0e0e0;
+  border: 2px inset #808080;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+textarea, input[type="file"], input[type="text"] {
+  width: 100%;
+  background: #fff;
+  color: #000;
+  border: 2px inset #808080;
+  padding: 4px;
+  font-family: 'VT323', monospace;
+}
+
+button, input[type="submit"] {
+  background: #c0c0c0;
+  border: 2px outset #fff;
+  color: #000;
+  font-family: 'VT323', monospace;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+button:hover {
+  background: #a0a0a0;
+}

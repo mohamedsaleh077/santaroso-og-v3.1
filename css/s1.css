@@ -1,0 +1,138 @@
+/* Import pixel font */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Press Start 2P', monospace;
+  color: #33ff33;
+  background-color: #000040;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/* Responsive container */
+.container {
+  width: 95%;
+  max-width: 100%;
+  margin: 20px auto;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.8);
+  border: 3px double #33ff33;
+  box-shadow: 0 0 10px #33ff33;
+}
+
+/* Links */
+a {
+  color: #33ff33;
+  text-decoration: underline;
+}
+a:hover {
+  color: #aaffaa;
+}
+
+/* Post & form */
+.post, .post-form {
+  background: rgba(0,0,0,0.7);
+  border: 2px inset #33ff33;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+/* Inputs and textarea */
+textarea,
+input[type="file"],
+input[type="text"] {
+  width: 100%;
+  background: #000;
+  color: #33ff33;
+  border: 2px inset #33ff33;
+  padding: 5px;
+  box-sizing: border-box;
+  font-family: 'Press Start 2P', monospace;
+}
+
+/* Buttons */
+button,
+input[type="submit"],
+.load-more-posts,
+.load-more-comments {
+  display: inline-block;
+  background: #33ff33;
+  color: #000;
+  border: 2px outset #33ff33;
+  padding: 6px 12px;
+  font-family: 'Press Start 2P', monospace;
+  cursor: pointer;
+}
+button:hover,
+.load-more-posts:hover,
+.load-more-comments:hover {
+  background: #aaffaa;
+}
+
+/* Post & comment text */
+.user {
+  color: #aaffaa;
+}
+.timestamp, .id {
+  color: #999;
+  font-size: 0.8em;
+}
+.post-content {
+  margin: 8px 0;
+}
+.comments {
+  margin-left: 10px;
+  border-left: 3px dotted #33ff33;
+  padding-left: 10px;
+}
+.comment {
+  margin: 5px 0;
+  background: rgba(0,0,0,0.6);
+  padding: 5px;
+  border: 1px solid #33ff33;
+}
+
+/* “New” animation */
+.new-post,
+.new-comment {
+  animation: blink-bg 1s steps(2) 3;
+}
+@keyframes blink-bg {
+  from { background-color: rgba(0,0,0,0.7); }
+  to   { background-color: rgba(50, 50, 0, 0.9); }
+}
+
+/* --- Responsive media query --- */
+@media (max-width: 600px) {
+  body {
+    font-size: 10px;
+  }
+
+  .container {
+    padding: 10px;
+    width: 98%;
+  }
+
+  textarea,
+  input[type="file"],
+  input[type="text"] {
+    font-size: 10px;
+  }
+
+  button,
+  input[type="submit"],
+  .load-more-posts,
+  .load-more-comments {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
