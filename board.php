@@ -1,3 +1,6 @@
+<?php
+    require_once($_SERVER['DOCUMENT_ROOT'].'/includes/session.inc.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -74,17 +77,18 @@
             </video>
 
             <form id="post-form" style="display: none;" method="post" enctype="multipart/form-data" class="post-form">
-                <input type="hidden" name="csrf_token" value="">
+                <input type="hidden" name="csrf_token" value="<?= $_SESSION['CSRF_TOKEN']; ?>">
                 <div>
-                    <input type="text" name="name" id="name" placeholder="Anonymous (Default)">
-                    <input type="text" name="title" id="title" placeholder="Post Title *" required>
-                    <textarea id="content" name="content" placeholder="Post Body" required maxlength="5000"
-                        rows="7"></textarea>
+                    <input type="text" name="name" id="name" placeholder="Anonymous (Default)" value="<?= $_SESSION['name'] ?? ''; ?>">
+                    <input type="text" name="title" id="title" placeholder="Post Title *" required maxlength="250" value="<?= $_SESSION['title'] ?? ''; ?>">
+                    <textarea id="content" name="content" placeholder="Post Body" required maxlength="5000" rows="7">
+                        <?= $_SESSION['content'] ?? ''; ?>
+                    </textarea>
                 </div>
                 <div>
                     <label for="media">Upload media:</label>
                     <input type="file" name="media" id="media"
-                        accept="image/jpeg,image/pjpeg,image/png,image/gif,image/webp,video/mp4,video/webm">
+                        accept="image/jpeg,image/png,image/gif,image/webp,video/mp4,video/webm">
                     <small>Images: max 2MB (JPG, PNG, GIF, WebP) | Videos: max 5MB (MP4, WebM)</small>
                 </div>
                 <button type="submit" name="submit">Post</button>
