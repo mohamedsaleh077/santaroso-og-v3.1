@@ -1,0 +1,73 @@
+CREATE TABLE IF NOT EXISTS `category` (
+    `id` INT NOT NULL AUTO_INCREMENT UNIQUE,
+    `name` VARCHAR(255),
+    PRIMARY KEY(`id`)
+);
+
+CREATE TABLE IF NOT EXISTS `users` (
+    `id` INT NOT NULL AUTO_INCREMENT UNIQUE,
+    `ip` VARCHAR(255) NOT NULL,
+    `is_banned` BOOLEAN NOT NULL DEFAULT false,
+    PRIMARY KEY(`id`)
+);
+
+CREATE TABLE IF NOT EXISTS `admins` (
+    `id` INT NOT NULL AUTO_INCREMENT UNIQUE,
+    `username` VARCHAR(255) NOT NULL,
+    `pwd_hash` VARCHAR(255) NOT NULL,
+    PRIMARY KEY(`id`)
+);
+
+CREATE TABLE IF NOT EXISTS `boards` (
+    `id` INT NOT NULL AUTO_INCREMENT UNIQUE,
+    `c_id` INT NOT NULL,
+    `name` VARCHAR(255),
+    `describtion` TEXT(65535),
+    `icon` VARCHAR(255),
+    `bg` VARCHAR(255),
+    `vid` VARCHAR(255),
+    PRIMARY KEY(`id`),
+    FOREIGN KEY(`c_id`) REFERENCES `category`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+
+CREATE TABLE IF NOT EXISTS `posts` (
+    `id` INT NOT NULL AUTO_INCREMENT UNIQUE,
+    `userid` INT NOT NULL,
+    `b_id` INT NOT NULL,
+    `auther` VARCHAR(255) NOT NULL DEFAULT 'Anonymos',
+    `titel` VARCHAR(255) NOT NULL,
+    `body` TEXT(65535),
+    `media` VARCHAR(255),
+    PRIMARY KEY(`id`),
+    FOREIGN KEY(`b_id`) REFERENCES `boards`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION,
+    FOREIGN KEY(`userid`) REFERENCES `users`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+
+CREATE TABLE IF NOT EXISTS `comments` (
+    `id` INT NOT NULL AUTO_INCREMENT UNIQUE,
+    `p_id` INT NOT NULL,
+    `userid` INT NOT NULL,
+    `auther` VARCHAR(255) NOT NULL DEFAULT 'Anonymos',
+    `body` TEXT(65535),
+    `media` VARCHAR(255),
+    PRIMARY KEY(`id`),
+    FOREIGN KEY(`p_id`) REFERENCES `posts`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION,
+    FOREIGN KEY(`userid`) REFERENCES `users`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+
+CREATE TABLE IF NOT EXISTS `annoucments` (
+    `id` INT NOT NULL AUTO_INCREMENT UNIQUE,
+    `adminid` INT NOT NULL,
+    `title` VARCHAR(255) NOT NULL,
+    `body` TEXT(65535) NOT NULL,
+    PRIMARY KEY(`id`),
+    FOREIGN KEY(`adminid`) REFERENCES `admins`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+
+CREATE TABLE IF NOT EXISTS `reports` (
+    `id` INT NOT NULL AUTO_INCREMENT UNIQUE,
+    `title` VARCHAR(255) NOT NULL,
+    `body` TEXT(65535),
+    `read` BOOLEAN NOT NULL DEFAULT false,
+    PRIMARY KEY(`id`)
+);
