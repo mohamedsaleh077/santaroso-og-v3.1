@@ -1,13 +1,53 @@
+:root {
+    /* Updated Colors for Frutiger Aero Theme */
+    --body-bg: rgb(255, 236, 196);
+    --container-bg: rgba(153, 204, 255, 0.5);
+    --card-bg: rgba(250, 250, 250, 0.75);
+    --input-bg: rgba(255, 255, 255, 0.75);
+    --comment-bg: linear-gradient(#3CB371, #87CEFA);
+    --comment-form-bg: #f8f8f8;
+
+    /* Brand & Links */
+    --primary-blue: #1a73e8;
+    --text-main: #000000;
+    --text-muted: #666666;
+    --border-color: #cccccc;
+
+    /* Buttons */
+    --btn-danger: #fa5c5c;
+    --btn-danger-hover: #ccb74e;
+    --btn-text: #ffffff;
+
+    /* Highlights */
+    --highlight-glow: #fc3;
+    --highlight-green: #abfc79;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     background-image: url("https://preview.redd.it/frutiger-aero-wallpaper-i-whipped-up-in-a-few-hours-hoping-v0-jcaq7gsamypc1.png?auto=webp&s=7542aa8c7ed3362529c9b4cc527698e64e4745ee");
-    background-color: rgb(255, 236, 196);
+    background-color: var(--body-bg);
     background-attachment: fixed;
     background-repeat: round;
     background-position: center top;
     background-size: contain;
-    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
     line-height: 1.5;
     font-size: 16px;
+}
+
+img {
+    min-width: 150px;
+    max-width: 100%;
+}
+
+.primarylogo {
+    border-left: solid black 2px;
 }
 
 video {
@@ -17,126 +57,126 @@ video {
 }
 
 .container {
-    text-shadow: #abfc79 0px 0px 6px;
+    text-shadow: var(--highlight-green) 0px 0px 6px;
     box-shadow: 0px 0px 24px 4px rgba(136, 231, 136, 0.5);
     backdrop-filter: blur(16px) saturate(180%);
-    background: rgba(153, 204, 255, 0.5);
+    background: var(--container-bg);
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    border: 8px groove rgba(0,158,255,0.25);
+    border: 8px groove rgba(0, 158, 255, 0.25);
     border-radius: 8px 8px 0px 0px;
+}
+
+.title {
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.posts {
+    width: 90%;
+    margin: auto;
 }
 
 .post, .post-form {
     backdrop-filter: blur(16px) saturate(250%);
-    background: rgba(250, 250, 250, 0.75);
+    background: var(--card-bg);
     padding: 16px;
-    margin: 8px 0;
+    margin: 15px 0;
     border-radius: 16px;
-    box-shadow: 0px 0px 6px rgba(0,0,0,0.15);
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.15);
     transition: background-color 0.5s ease;
-    color:#000;
+    color: var(--text-main);
+}
+
+.post-titel {
+    font-size: larger;
+    font-weight: 700;
 }
 
 .comment-form {
     opacity: 0.85;
     backdrop-filter: blur(8px) saturate(256%);
-    margin-top: 6px;
-    padding: 4px;
-    background: #f8f8f8;
+    margin-top: 10px;
+    padding: 10px;
+    background: var(--comment-form-bg);
     border-radius: 8px;
-    box-shadow: #fc3 0px 0px 8px;
+    box-shadow: var(--highlight-glow) 0px 0px 8px;
 }
 
 textarea, input[type="text"], input[type="file"] {
     width: 100%;
-    padding: 4px;
-    margin-bottom: 8px;
-    text-shadow: #fc3 0px 0px 6px;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-shadow: var(--highlight-glow) 0px 0px 6px;
     opacity: 0.75;
-    box-shadow: #fc3 0px 0px 8px;
+    box-shadow: var(--highlight-glow) 0px 0px 8px;
     backdrop-filter: blur(16px) saturate(150%);
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     border-radius: 6px;
     box-sizing: border-box;
-    font-family: Segoe UI Symbol;
+    font-family: "Segoe UI Symbol", inherit;
     font-size: 14px;
+    background-color: var(--input-bg);
     transition: border-color 0.5s;
 }
 
 textarea:focus, input:focus {
-    border-color: #1a73e8;
-    outline: fixed;
+    border-color: var(--primary-blue);
+    outline: none;
 }
 
-button, .load-more-posts, .load-more-comments {
-    text-shadow: #fc3 0px 0px 6px;
-    background: #fa5c5c;
-    color: white;
+button, .load-more {
+    text-shadow: var(--highlight-glow) 0px 0px 6px;
+    background: var(--btn-danger);
+    color: var(--btn-text);
     border: dashed 2px;
     padding: 10px 18px;
     cursor: pointer;
     margin: 10px 0;
     border-radius: 12px;
-    box-shadow: #fc3 4px 4px 6px;
+    box-shadow: var(--highlight-glow) 4px 4px 6px;
     font-size: 14px;
     font-weight: bold;
     transition: background 0.3s;
 }
 
-button:hover,
-.load-more-posts:hover,
-.load-more-comments:hover {
-    background: #ccb74e;
-}
-
-.load-more-posts,
-.load-more-comments {
-    display: block;
-    margin: 20px auto;
-    background: #4CAF50;
-    width: 200px;
-    text-align: center;
-}
-.load-more-posts:hover,
-.load-more-comments:hover {
-    background: #45a08b;
+button:hover, .load-more:hover {
+    background: var(--btn-danger-hover);
 }
 
 .user {
-    text-shadow: #1a73e8 0px 0px 8px;
+    text-shadow: var(--primary-blue) 0px 0px 8px;
+    color: var(--primary-blue);
     font-weight: bold;
     font-size: 14px;
 }
 
 .timestamp, .id {
-    text-shadow: #fc3 0px 0px 8px;
+    text-shadow: var(--highlight-glow) 0px 0px 8px;
+    color: var(--text-muted);
     font-size: 12px;
 }
 
-.comments {
-    margin-top: 0px;
-}
-
 .comment {
-    box-shadow: 
-    1px 2px 8px teal,
-    0px 0px 0.75em cyan,
-    0 0 0.2em yellowgreen;
-    text-shadow: #fc3 0px 0px 4px;
+    box-shadow: 1px 2px 8px teal, 0px 0px 0.75em cyan, 0 0 0.2em yellowgreen;
+    text-shadow: var(--highlight-glow) 0px 0px 4px;
     border-left: 3px dashed #FFDEAD;
-    padding: 4px 8px;
+    padding: 8px 12px;
     margin: 12px 0;
-    background: linear-gradient(#3CB371, #87CEFA);
-    opacity: 0.75;
+    background: var(--comment-bg);
+    opacity: 0.85;
     border-radius: 8px 14px 14px 8px;
     transition: background-color 0.5s ease;
 }
 
 .media-container {
     margin: 8px 0;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .media-thumbnail {
@@ -146,32 +186,28 @@ button:hover,
     opacity: 0.85;
     backdrop-filter: blur(16px) saturate(150%);
     cursor: pointer;
-    box-shadow: 0px 0px 16px rgba(216, 64, 64);
-}
-
-video.media-thumbnail {
-    background-position: center;
-}
-
-.media-link {
-    display: inline-block;
+    box-shadow: 0px 0px 16px rgba(216, 64, 64, 0.5);
+    border: 1px solid #000;
 }
 
 .error {
     color: #d32f2f;
     padding: 8px;
-    background: #ffebee;
+    background: #ffeeee;
+    border: 1px solid #ffcccc;
     border-radius: 4px;
     margin: 10px 0;
+    font-weight: bold;
 }
 
 .success {
     text-align: center;
     color: #388e3c;
-    padding: 4px;
+    padding: 8px;
     background: #e8f5e9;
     border-radius: 16px;
-    margin: 14px 62px;
+    margin: 14px auto;
+    max-width: 80%;
     text-shadow: #fc0 1px 0 10px;
 }
 
@@ -180,16 +216,6 @@ label {
     display: block;
     margin: 10px 0 5px;
     text-shadow: #45a049 0px 0px 8px;
-}
-
-.new-post {
-    background-color: #fffde7;
-    animation: highlight 2s;
-}
-
-.new-comment {
-    background-color: #e8f5e9;
-    animation: highlight 2s;
 }
 
 @keyframes highlight {
@@ -202,63 +228,17 @@ label {
     body {
         font-size: 14px;
         background-size: cover;
-        background-color: rgba(250, 250, 250, 0.85);
     }
 
     .container {
         padding: 10px;
     }
 
-    textarea, input[type="text"], input[type="file"] {
-        font-size: 13px;
-    }
-
-    button, .load-more-posts, .load-more-comments {
-        font-size: 13px;
-        padding: 8px 12px;
+    .posts {
         width: 100%;
     }
 
-    .media-thumbnail {
-        max-height: 200px;
+    button {
+        width: 100%;
     }
-}
-
-.error {
-    color: red;
-    font-weight: bold;
-    margin: 10px 0;
-    padding: 8px;
-    background-color: #ffeeee;
-    border: 1px solid #ffcccc;
-    border-radius: 4px;
-}
-
-.comment-media {
-    margin-top: 8px;
-}
-
-.comment-media .media-thumbnail {
-    max-height: 200px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-}
-
-.comment-form label[for^="comment_media"] {
-    display: block;
-    margin-top: 5px;
-    font-size: 0.9em;
-    color: #666;
-}
-
-.comment-form input[type="file"] {
-    font-size: 0.9em;
-    margin-top: 3px;
-}
-
-.comment-form small {
-    display: block;
-    font-size: 0.9em;
-    color: #999;
-    margin-top: 3px;
 }

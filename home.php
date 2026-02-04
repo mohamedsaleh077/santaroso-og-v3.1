@@ -1,3 +1,19 @@
+<?php
+require_once($_SERVER['DOCUMENT_ROOT'] . '/includes/session.inc.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/includes/db.inc.php');
+
+// جلب الكاتيجوري ومعها البوردات التابعة لها
+try {
+    // نجلب الكاتيجوري أولاً
+    $catStmt = $pdo->query("SELECT * FROM category ORDER BY id ASC");
+    $categories = $catStmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // نجلب كل البوردات لنقوم بتوزيعها برمجياً أو عبر استعلام داخل اللوب
+    // لسهولة الكود سنقوم بجلب البوردات لكل كاتيجوري داخل اللوب
+} catch (PDOException $e) {
+    die("Database Error: " . $e->getMessage());
+}
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -128,7 +144,7 @@
         }
 
         .board-th {
-            width: 150px;
+            width: 250px;
         }
 
         @media (max-width: 768px) {
@@ -140,6 +156,10 @@
         .annoucments * {
             margin: 3px;
         }
+        .board-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+        .board-th { width: 200px; text-align: left; padding: 5px; }
+        .boards hr { border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0; }
+        .board-icon { vertical-align: middle; margin-right: 5px; border-radius: 3px; }
     </style>
 </head>
 
@@ -154,47 +174,35 @@
 
         <main>
             <section>
-                <h2 data-i18n="what_is">What is Santaroso?</h2>
-                <p data-i18n="what_is_desc">
-                    a retro style Image Board, not like the other classic ones, was just a testing for a host using Ai
-                    and vibe coding,
-                    I was not exceprt enought to make a full project like this, but now I am, and I am remaking it,
-                    keeping the old
-                    lightwieght wierd UI and concepts, with a modern and good written simple engine with PHP, the
-                    project is fully Open-Source! and open for all contributers! you do not need to be exceprt to write
-                    a production code for it, since it is simple asf, just a little knowladge about HTML, CSS and JS and
-                    you can make your own theme!
-                    a little PHP and MySQL to improve the system itself, ot you can even be an mod! or at least you can
-                    donate
-                    for the project to still live!
-                </p>
-            </section>
-
-            <section>
                 <h2 data-i18n="boards">Boards</h2>
-                <h3>General</h3>
-                <div class="boards">
-                    <table class="board-table">
-                        <tr>
-                            <th class="board-th"><a href="">/general</a></th>
-                            <th>general board</th>
-                        </tr>
-                    </table>
-                </div>
-                <hr>
-                <h3>Vocaloid</h3>
-                <div class="boards">
-                    <table class="board-table">
-                        <tr>
-                            <th class="board-th"><a href="">/miku</a></th>
-                            <th>miku board</th>
-                        </tr>
-                        <tr>
-                            <th><a href="">/teto</a></th>
-                            <th>teto board</th>
-                        </tr>
-                    </table>
+
+                <?php foreach ($categories as $cat): ?>
+                    <h3><?= htmlspecialchars($cat['name']) ?></h3>
+                    <div class="boards">
+                        <table class="board-table">
+                            <?php
+                            // جلب البوردات التابعة لهذه الكاتيجوري
+                            $boardStmt = $pdo->prepare("SELECT * FROM boards WHERE c_id = :cid ORDER BY name ASC");
+                            $boardStmt->execute(['cid' => $cat['id']]);
+                            $boards = $boardStmt->fetchAll(PDO::FETCH_ASSOC);
+
+                            foreach ($boards as $board):
+                                ?>
+                                <tr>
+                                    <th class="board-th">
+                                        <?php if($board['icon']): ?>
+                                            <img src="./uploads/<?= $board['icon'] ?>" class="board-icon" width="16" height="16">
+                                        <?php endif; ?>
+                                        <a href="board.php?b=<?= $board['id'] ?>">/<?= htmlspecialchars($board['name']) ?></a>
+                                    </th>
+                                    <th><?= htmlspecialchars($board['description']) ?></th>
+                                </tr>
+                            <?php endforeach; ?>
+                        </table>
+                    </div>
                     <hr>
+                <?php endforeach; ?>
+
             </section>
 
             <section>

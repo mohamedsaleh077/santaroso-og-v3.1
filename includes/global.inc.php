@@ -1,12 +1,21 @@
 <?php
+ob_start();
 
-require_once($_SERVER['DOCUMENT_ROOT'].'/includes/session.php');
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+
+require_once($_SERVER['DOCUMENT_ROOT'].'/includes/session.inc.php');
 
 function setLastRequest(){
     $_SESSION['lastSubmit'] = time();
 }
 
 function isAllowed(){
+    if (!isset($_SESSION['lastSubmit'])) {
+        setLastRequest();
+        return true;
+    }
     return time() - $_SESSION['lastSubmit'] > 30;
 }
 
@@ -23,4 +32,3 @@ function isPost(){
         die("unsupported request method");
     }
 }
-
