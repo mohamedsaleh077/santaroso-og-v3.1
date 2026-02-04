@@ -11,7 +11,7 @@
     <link rel="icon" type="image/png" href="small-Logo.webp" />
     <style>
         body {
-            background-color: rgb(255, 177, 177);
+            background-color: rgb(246, 185, 185);
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 30px 20px;
@@ -19,7 +19,6 @@
         }
         header {
             text-align: center;
-            margin-bottom: 30px;
         }
         h1, h2, h3 {
             margin: 10px 0;
@@ -40,9 +39,7 @@
             text-decoration: none;
             padding: 12px 24px;
             margin: 10px;
-            border-radius: 6px;
             font-size: 16px;
-            transition: background-color 0.3s ease;
         }
         a.button:hover {
             background-color: #c04c4c;
@@ -56,7 +53,6 @@
             background-color: #333;
             color: white;
             border: none;
-            border-radius: 6px;
             font-size: 14px;
             cursor: pointer;
         }
@@ -69,27 +65,21 @@
             margin: 20px auto;
             background: #ffecec;
             padding: 20px;
-            border-radius: 8px;
             text-align: center;
+            color: red;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <img src="Santaroso-Logo.webp" alt="logo" width="300">
+    <img src="./assets/logo.png" alt="logo" width="300">
     <h1>サンタロソ</h1>
     <h2 id="subhead">Welcome to my Image Board!</h2>
     <p id="author-note">This image board was made by a good guy in Egypt 🇪🇬 - 2025</p>
-    <marquee behavior="scroll" direction="left">
-        santaroso is online again! it was an issue and fixed! thanks for supporting us!
-    </marquee>
-
+    <p>Visits: <strong>233</strong> Posts: <strong>3112</strong></p>
     <h3 id="quick-summary">Santaroso is a free, safe imageboard. No NSFW. No politics/religious hate. No illegal stuff. Be kind and have fun! Please scroll down to read all rules.</h3>
-
-    <h2 style="margin-top: 30px;" id="read-rules">🚨 You MUST read and agree to the rules before continuing 🚨</h2>
-
-    <button id="lang-toggle">العربية</button>
+    <h2 style="margin-top: 30px;" id="read-rules">You MUST read and agree to the rules before continuing</h2>
 </header>
 
 <ul id="rules-list">
@@ -106,76 +96,9 @@
 </ul>
 
 <div class="center-links">
-    <a href="./index1.htm" class="button">✅ I Agree — Enter</a>
-    <a href="https://www.google.com" class="button">❌ I Disagree — Leave</a>
+    <a href="./home.php" class="button">Agree</a>
+    <a href="https://www.google.com" class="button">Disagree</a>
 </div>
-
-<script>
-    const rulesEn = [
-        "No spam, flooding, or repetitive posts.",
-        "No NSFW, adult, or suggestive content. Keep it clean and safe for everyone.",
-        "No offensive, hateful, or bullying language.",
-        "No political, religious, or divisive discussions. Stay neutral and fun.",
-        "No ads, scams, phishing, or illegal material.",
-        "Respect others. Help make this a positive, welcoming community.",
-        "Posts are permanent — no edits or deletions. Think before you post!",
-        "We log your IP and assign a random user ID. Nothing more, no data sharing.",
-        "Breaking rules = instant ban. No second chances.",
-        "Report bad behavior to help us moderate faster."
-    ];
-
-    const rulesAr = [
-        "ممنوع السبام أو تكرار المنشورات.",
-        "ممنوع المحتوى الإباحي أو غير اللائق. اجعل المكان آمنًا للجميع.",
-        "ممنوع اللغة المسيئة أو التنمر.",
-        "ممنوع النقاشات السياسية أو الدينية أو المثيرة للجدل.",
-        "ممنوع الإعلانات أو الروابط الوهمية أو المحتوى غير القانوني.",
-        "احترم الآخرين. ساهم في بناء مجتمع راقٍ وممتع.",
-        "جميع المشاركات دائمة — لا تعديل أو حذف.",
-        "نحفظ IP ونعين معرف مستخدم عشوائي.",
-        "مخالفة القوانين = حظر فوري.",
-        "يمكنك الإبلاغ عن سلوك سيء.",
-    ];
-
-    const toggleBtn = document.getElementById("lang-toggle");
-    const rulesList = document.getElementById("rules-list");
-    const subhead = document.getElementById("subhead");
-    const authorNote = document.getElementById("author-note");
-    const readRules = document.getElementById("read-rules");
-    const quickSummary = document.getElementById("quick-summary");
-
-    let isArabic = false;
-
-
-    toggleBtn.addEventListener("click", () => {
-        rulesList.innerHTML = "";
-        if (!isArabic) {
-            rulesAr.forEach(rule => {
-                const li = document.createElement("li");
-                li.textContent = rule;
-                rulesList.appendChild(li);
-            });
-            subhead.textContent = "مرحبًا بك في لوحة الصور!";
-            authorNote.textContent = "تم إنشاء هذه اللوحة من قبل شخص طيب من مصر 🇪🇬 - 2025";
-            readRules.textContent = "🚨 يجب عليك قراءة القوانين والموافقة عليها قبل المتابعة 🚨";
-            quickSummary.textContent = "Santaroso هو منتدى مجاني وآمن. ممنوع الإباحيات والكراهية والمحتوى غير القانوني. احترم الآخرين واستمتع! اقرأ باقي القوانين أسفل.";
-            toggleBtn.textContent = "English";
-            isArabic = true;
-        } else {
-            rulesEn.forEach(rule => {
-                const li = document.createElement("li");
-                li.textContent = rule;
-                rulesList.appendChild(li);
-            });
-            subhead.textContent = "Welcome to my Image Board!";
-            authorNote.textContent = "This image board was made by a good guy in Egypt 🇪🇬 - 2025";
-            readRules.textContent = "🚨 You MUST read and agree to the rules before continuing 🚨";
-            quickSummary.textContent = "Santaroso is a free, safe imageboard. No NSFW. No politics/religious hate. No illegal stuff. Be kind and have fun! Please scroll down to read all rules.";
-            toggleBtn.textContent = "العربية";
-            isArabic = false;
-        }
-    });
-</script>
 
 </body>
 </html>
